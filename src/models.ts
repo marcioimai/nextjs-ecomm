@@ -13,9 +13,9 @@ export type Product = {
 };
 
 export enum OrderStatus {
-  PENDING = 'pending',
-  PAID = 'paid',
-  FAILED = 'failed',
+  PENDING = "pending",
+  PAID = "paid",
+  FAILED = "failed",
 }
 
 export type Order = {

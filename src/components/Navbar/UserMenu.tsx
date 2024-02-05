@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
-import { IconButton, Menu, MenuItem, Typography } from '@mui/material';
-import { useState } from 'react';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import { useRouter } from 'next/navigation';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import LogoutIcon from '@mui/icons-material/Logout';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import Link from 'next/link';
+import { IconButton, Menu, MenuItem, Typography } from "@mui/material";
+import { useState } from "react";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import { useRouter } from "next/navigation";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import LogoutIcon from "@mui/icons-material/Logout";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import Link from "next/link";
+import { logoutAction } from "../../server-actions/auth.action";
 
 export type UserMenuProps = {
   user: any | null;
@@ -23,12 +24,12 @@ export function UserMenu(props: UserMenuProps) {
 
   const redirectToCart = () => {
     handleClose();
-    router.push('/my-cart');
+    router.push("/my-cart");
   };
 
   const redirectToMyOrders = () => {
     handleClose();
-    router.push('/my-orders');
+    router.push("/my-orders");
   };
 
   const handleClose = () => {
@@ -36,6 +37,7 @@ export function UserMenu(props: UserMenuProps) {
   };
 
   const handleLogout = async () => {
+    await logoutAction();
     handleClose();
   };
 
@@ -47,13 +49,13 @@ export function UserMenu(props: UserMenuProps) {
       <Menu
         anchorEl={anchorEl}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         keepMounted
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+          vertical: "top",
+          horizontal: "right",
         }}
         open={Boolean(anchorEl)}
         onClose={handleClose}
@@ -73,7 +75,7 @@ export function UserMenu(props: UserMenuProps) {
       </Menu>
     </div>
   ) : (
-    <Link href={'/login'} style={{ textDecoration: 'none' }}>
+    <Link href={"/login"} style={{ textDecoration: "none" }}>
       <Typography color="text.primary" sx={{ ml: 3, fontWeight: 500 }}>
         Entrar
       </Typography>
